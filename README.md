@@ -42,7 +42,7 @@ STAGED
 -2  new file   src/index.ts
 
 ────────────────────────────────────────
-Enter numbers to toggle  1 3 to stage  -1 -2 to unstage
+Enter numbers: 1 2 3 to stage, -1 -2 to unstage, 1 3 -2 for both
 
 > 1 2 -1
 ```
