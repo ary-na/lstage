@@ -16,7 +16,7 @@ I built lstage because I kept finding myself either staging everything with `git
 ## Install
 
 ```bash
-npm install -g lstage
+npm install -g @ariian/lstage
 ```
 
 ---
