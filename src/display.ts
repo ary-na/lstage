@@ -37,10 +37,11 @@ export function displayStatus(status: GitStatus): void {
 
   console.log("\n" + chalk.dim("─".repeat(40)));
   console.log(
-    chalk.dim("Enter numbers to toggle  ") +
-      chalk.green("1 3") +
-      chalk.dim(" to stage  ") +
+    chalk.dim("Enter numbers — ") +
+      chalk.green("1 2 3") +
+      chalk.dim(" to stage, ") +
       chalk.red("-1 -2") +
-      chalk.dim(" to unstage"),
+      chalk.dim(" to unstage, or mix: ") +
+      chalk.yellow("1 3 -2"),
   );
 }
