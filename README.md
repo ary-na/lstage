@@ -2,14 +2,14 @@
 
 > Interactive git staging tool. Select files by number, stage or unstage instantly.
 
-[![npm version](https://img.shields.io/npm/v/lstage?color=black&style=flat-square)](https://www.npmjs.com/package/lstage)
-[![npm downloads](https://img.shields.io/npm/dm/lstage?color=black&style=flat-square)](https://www.npmjs.com/package/lstage)
-[![license](https://img.shields.io/npm/l/lstage?color=black&style=flat-square)](./LICENSE)
-[![node](https://img.shields.io/node/v/lstage?color=black&style=flat-square)](https://nodejs.org)
+[![npm version](https://img.shields.io/npm/v/%40ariian%2Flstage?color=black&style=flat-square)](https://www.npmjs.com/package/@ariian/lstage)
+[![npm downloads](https://img.shields.io/npm/dm/%40ariian%2Flstage?color=black&style=flat-square)](https://www.npmjs.com/package/@ariian/lstage)
+[![license](https://img.shields.io/npm/l/%40ariian%2Flstage?color=black&style=flat-square)](./LICENSE)
+[![node](https://img.shields.io/node/v/%40ariian%2Flstage?color=black&style=flat-square)](https://nodejs.org)
 
 ---
 
-I built lstage because I kept finding myself either staging everything with `git add .` when I only wanted a few files, or tediously typing out full file paths one by one. I wanted something that just shows me what's changed, lets me pick by number, and gets out of the way — so I built it.
+I built lstage because I kept finding myself either staging everything with `git add .` when I only wanted a few files, or tediously typing out full file paths one by one. I wanted something that just shows me what's changed, lets me pick by number, and gets out of the way, so I built it.
 
 ---
 
