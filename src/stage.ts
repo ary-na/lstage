@@ -1,9 +1,9 @@
-import { execSync } from "node:child_process";
+import { spawnSync } from "node:child_process";
 import chalk from "chalk";
 import type { GitStatus } from "./git.js";
 import type { Selection } from "./prompt.js";
 
-export function applySelection(status: GitStatus, selection: Selection): void {
+export function applySelection(status: GitStatus, selection: Selection): boolean {
   const { toStage, toUnstage } = selection;
   const { unstaged, staged } = status;
 
@@ -16,12 +16,13 @@ export function applySelection(status: GitStatus, selection: Selection): void {
       console.log(chalk.red(`  ✗ No unstaged file at index ${num}`));
       continue;
     }
-    try {
-      execSync(`git add "${file.file}"`);
+    const result = spawnSync("git", ["add", file.file], { stdio: ["inherit", "inherit", "pipe"] });
+    if (result.status === 0) {
       console.log(chalk.green(`  ✓ Staged    ${file.file}`));
       acted = true;
-    } catch {
-      console.log(chalk.red(`  ✗ Failed to stage ${file.file}`));
+    } else {
+      const errMsg = result.stderr?.toString().trim();
+      console.log(chalk.red(`  ✗ Failed to stage ${file.file}${errMsg ? ": " + errMsg : ""}`));
     }
   }
 
@@ -32,16 +33,19 @@ export function applySelection(status: GitStatus, selection: Selection): void {
       console.log(chalk.red(`  ✗ No staged file at index ${num}`));
       continue;
     }
-    try {
-      execSync(`git restore --staged "${file.file}"`);
+    const result = spawnSync("git", ["restore", "--staged", file.file], { stdio: ["inherit", "inherit", "pipe"] });
+    if (result.status === 0) {
       console.log(chalk.yellow(`  ✓ Unstaged  ${file.file}`));
       acted = true;
-    } catch {
-      console.log(chalk.red(`  ✗ Failed to unstage ${file.file}`));
+    } else {
+      const errMsg = result.stderr?.toString().trim();
+      console.log(chalk.red(`  ✗ Failed to unstage ${file.file}${errMsg ? ": " + errMsg : ""}`));
     }
   }
 
   if (!acted) {
     console.log(chalk.dim("\n  No changes made."));
   }
+
+  return acted;
 }

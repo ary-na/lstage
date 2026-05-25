@@ -48,7 +48,9 @@ export function getGitStatus(): GitStatus {
 
     const indexStatus = line[0]!;
     const workStatus = line[1]!;
-    const file = line.slice(3).trim();
+    const rawFile = line.slice(3).trim();
+    // Porcelain v1 renames: "R  old -> new" — use only the destination path
+    const file = rawFile.includes(" -> ") ? rawFile.split(" -> ")[1]!.trim() : rawFile;
 
     if (indexStatus !== " " && indexStatus !== "?") {
       staged.push({
