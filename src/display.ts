@@ -36,7 +36,10 @@ export function displayStatus(status: GitStatus): void {
       chalk.green("1 2 3") +
       chalk.dim(" to stage, ") +
       chalk.red("-1 -2") +
-      chalk.dim(" to unstage, or mix: ") +
-      chalk.yellow("1 3 -2"),
+      chalk.dim(" to unstage, ") +
+      chalk.green("a") +
+      chalk.dim(" / ") +
+      chalk.red("-a") +
+      chalk.dim(" for all"),
   );
 }

@@ -4,10 +4,32 @@ import type { GitStatus } from "./git.js";
 import type { Selection } from "./prompt.js";
 
 export function applySelection(status: GitStatus, selection: Selection): boolean {
-  const { toStage, toUnstage } = selection;
+  const { toStage, toUnstage, stageAll, unstageAll } = selection;
   const { unstaged, staged } = status;
 
   let acted = false;
+
+  if (stageAll && unstaged.length > 0) {
+    const result = spawnSync("git", ["add", "."], { stdio: ["inherit", "inherit", "pipe"] });
+    if (result.status === 0) {
+      for (const f of unstaged) console.log(chalk.green(`  ✓ Staged    ${f.file}`));
+      acted = true;
+    } else {
+      const errMsg = result.stderr?.toString().trim();
+      console.log(chalk.red(`  ✗ Failed to stage all${errMsg ? ": " + errMsg : ""}`));
+    }
+  }
+
+  if (unstageAll && staged.length > 0) {
+    const result = spawnSync("git", ["restore", "--staged", "."], { stdio: ["inherit", "inherit", "pipe"] });
+    if (result.status === 0) {
+      for (const f of staged) console.log(chalk.yellow(`  ✓ Unstaged  ${f.file}`));
+      acted = true;
+    } else {
+      const errMsg = result.stderr?.toString().trim();
+      console.log(chalk.red(`  ✗ Failed to unstage all${errMsg ? ": " + errMsg : ""}`));
+    }
+  }
 
   // Stage files
   for (const num of toStage) {
