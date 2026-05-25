@@ -25,6 +25,8 @@ npm install -g @ariian/lstage
 
 ```bash
 lstage
+lstage --version   # print version and exit
+lstage -v          # alias for --version
 ```
 
 You'll see your unstaged and staged files in two numbered sections:
