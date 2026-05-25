@@ -1,6 +1,6 @@
 {
   "name": "@ariian/lstage",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Interactive CLI tool to stage and unstage git files by number",
   "type": "module",
   "bin": {
