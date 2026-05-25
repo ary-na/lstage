@@ -1,10 +1,20 @@
 #!/usr/bin/env node
 
+import { createRequire } from "module";
 import chalk from "chalk";
 import { getGitStatus } from "./git.js";
 import { displayStatus } from "./display.js";
 import { promptUser, parseInput } from "./prompt.js";
 import { applySelection } from "./stage.js";
+
+const require = createRequire(import.meta.url);
+const { version } = require("../package.json") as { version: string };
+
+const args = process.argv.slice(2);
+if (args.includes("--version") || args.includes("-v")) {
+  console.log(version);
+  process.exit(0);
+}
 
 async function main(): Promise<void> {
   const status = getGitStatus();
