@@ -9,7 +9,7 @@
 
 ---
 
-I built lstage because I kept finding myself either staging everything with `git add .` when I only wanted a few files, or tediously typing out full file paths one by one. I wanted something that just shows me what's changed, lets me pick by number, and gets out of the way, so I built it.
+I built lstage because I kept finding myself either staging everything with `git add .` when I only wanted a few files, or tediously typing out full file paths one by one. I wanted something that just shows me what's changed, lets me pick by number, and gets out of the way.
 
 ---
 
@@ -31,25 +31,25 @@ You'll see your unstaged and staged files in two numbered sections:
 
 ```
 UNSTAGED
-────────────────────────────────────────
- 1  modified   src/components/Button.tsx
- 2  modified   src/components/Modal.tsx
- 3  untracked  src/utils/helpers.ts
+   1  modified   src/components/Button.tsx
+   2  modified   src/components/Modal.tsx
+   3  untracked  src/utils/helpers.ts
 
 STAGED
-────────────────────────────────────────
--1  modified   README.md
--2  new file   src/index.ts
+  -1  modified   README.md
+  -2  new file   src/index.ts
 
 ────────────────────────────────────────
-Enter numbers: 1 2 3 to stage, -1 -2 to unstage, 1 3 -2 for both
+Enter numbers — 1 2 3 to stage, -1 -2 to unstage, or mix: 1 3 -2
 
 > 1 2 -1
 ```
 
 - Positive numbers → stage from the unstaged list
-- Negative numbers → unstage from the staged list
+- Negative numbers → unstage from the staged list (the index shown is already the number to type)
 - Mix freely: `1 2 3 -1 -2`
+
+After each action, the updated file list is shown so you can confirm the result at a glance.
 
 ---
 
@@ -61,7 +61,7 @@ Enter numbers: 1 2 3 to stage, -1 -2 to unstage, 1 3 -2 for both
 3. lstage shows →  numbered list of unstaged + staged files
 4. you type     →  1 3 -2
 5. lstage runs  →  git add / git restore --staged
-6. done         →  ✔ files staged or unstaged
+6. lstage shows →  updated file list (or ✓ Working tree is clean)
 ```
 
 ---
@@ -75,4 +75,4 @@ Enter numbers: 1 2 3 to stage, -1 -2 to unstage, 1 3 -2 for both
 
 ## License
 
-MIT © [arii.dev](https://arii.dev)
+MIT © Arian Najafi Yamchelo — [arii.dev](https://arii.dev)
